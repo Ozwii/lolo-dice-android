@@ -19,11 +19,14 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+      - name: Configurar Gradle y caché
+        uses: gradle/actions/setup-gradle@v4
+
       - name: Dar permiso de ejecución a gradlew
         run: chmod +x ./gradlew
 
       - name: Compilar APK Debug
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleDebug --no-configuration-cache
 
       - name: Subir APK como archivo descargable
         uses: actions/upload-artifact@v4
